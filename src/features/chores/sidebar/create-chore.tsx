@@ -15,6 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -40,7 +41,8 @@ export function CreateChore() {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log('Form Values:', values);
-    addChore(values);
+
+    addChore({ id: uuidv4(), ...values });
     setOpen(false);
   };
 
