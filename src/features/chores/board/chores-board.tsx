@@ -1,4 +1,5 @@
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/card';
+import { Button } from '@/components/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/card';
 import { useStore } from '@/store/store';
 
 export function ChoresBoard() {
@@ -17,6 +18,7 @@ export function ChoresBoard() {
 
 function Chores() {
   const chores = useStore((state) => state.chores);
+  const removeChore = useStore((state) => state.removeChore);
 
   if (!chores.length) return <div>No chores</div>;
 
@@ -28,6 +30,17 @@ function Chores() {
             <CardTitle>{chore.title}</CardTitle>
             <CardDescription>{chore.area}</CardDescription>
           </CardHeader>
+
+          <CardFooter>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                removeChore(chore.id);
+              }}
+            >
+              Delete
+            </Button>
+          </CardFooter>
         </Card>
       ))}
     </>
