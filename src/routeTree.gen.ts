@@ -16,27 +16,9 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const ContactUsLazyImport = createFileRoute('/contact-us')()
-const ChoresLazyImport = createFileRoute('/chores')()
-const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
-
-const ContactUsLazyRoute = ContactUsLazyImport.update({
-  path: '/contact-us',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/contact-us.lazy').then((d) => d.Route))
-
-const ChoresLazyRoute = ChoresLazyImport.update({
-  path: '/chores',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/chores.lazy').then((d) => d.Route))
-
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -51,28 +33,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/chores': {
-      preLoaderRoute: typeof ChoresLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/contact-us': {
-      preLoaderRoute: typeof ContactUsLazyImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
-  IndexLazyRoute,
-  AboutLazyRoute,
-  ChoresLazyRoute,
-  ContactUsLazyRoute,
-])
+export const routeTree = rootRoute.addChildren([IndexLazyRoute])
 
 /* prettier-ignore-end */
