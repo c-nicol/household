@@ -60,9 +60,10 @@ export function Header() {
 
 function HouseholdLogo() {
   return (
-    <Link to="/">
+    <Link to="/" className="flex items-center gap-x-2">
       <span className="sr-only">Household</span>
       <img className="h-8 w-auto" src="./household-logo.png" alt="" />
+      <span className="hidden font-bold sm:inline-block">household</span>
     </Link>
   );
 }
