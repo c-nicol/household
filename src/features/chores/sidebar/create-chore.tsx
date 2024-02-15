@@ -20,6 +20,7 @@ import {
 } from '@/components/select';
 import { IconPlus } from '@tabler/icons-react';
 
+// TODO: Add optional field for an icon
 export function CreateChore() {
   return (
     <Dialog>
