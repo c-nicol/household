@@ -10,8 +10,10 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Input } from '@/components/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select';
+import { useStore } from '@/store/store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { IconPlus } from '@tabler/icons-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -23,6 +25,10 @@ const formSchema = z.object({
 
 // TODO: Add optional field for an icon
 export function CreateChore() {
+  const addChore = useStore((state) => state.addChore);
+
+  const [open, setOpen] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,10 +40,12 @@ export function CreateChore() {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log('Form Values:', values);
+    addChore(values);
+    setOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex gap-x-2">
           <IconPlus className="h-4 w-4" />
