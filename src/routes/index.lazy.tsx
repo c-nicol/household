@@ -1,5 +1,5 @@
-import { ChoresBoard } from '@/features/chores/chores-board';
-import { ChoresSidebar } from '@/features/chores/chores-sidebar';
+import { ChoresBoard } from '@/features/chores/board/chores-board';
+import { ChoresSidebar } from '@/features/chores/sidebar/chores-sidebar';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 export const Route = createLazyFileRoute('/')({
