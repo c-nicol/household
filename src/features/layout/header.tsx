@@ -1,4 +1,5 @@
 import { Button } from '@/components/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/tooltip';
 import { IconBrandGithub } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
 import { useEffect, useRef } from 'react';
@@ -44,11 +45,21 @@ export function Header() {
           <HouseholdLogo />
 
           <div className="flex items-center gap-x-3">
-            <Button asChild variant="outline" className="rounded-3xl p-2">
-              <a href="https://github.com/c-nicol" target="_blank">
-                <IconBrandGithub className="h-full" />
-              </a>
-            </Button>
+            <TooltipProvider>
+              <Tooltip delayDuration={200}>
+                <TooltipTrigger asChild>
+                  <Button asChild variant="outline" className="rounded-3xl p-2">
+                    <a href="https://github.com/c-nicol" target="_blank">
+                      <IconBrandGithub className="h-full" />
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>View repository</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
             <Button variant="outline">Login</Button>
             <Button>Sign Up</Button>
           </div>
