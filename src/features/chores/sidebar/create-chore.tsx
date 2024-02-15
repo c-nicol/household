@@ -44,6 +44,7 @@ export function CreateChore() {
 
     addChore({ id: uuidv4(), ...values });
     setOpen(false);
+    form.reset();
   };
 
   return (
