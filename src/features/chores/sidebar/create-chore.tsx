@@ -33,22 +33,21 @@ export function CreateChore() {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create a Chore</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
+          <DialogDescription>Click submit when you're done.</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
+          <div className="grid grid-cols-5 items-center gap-4">
+            <Label htmlFor="title" className="text-right">
+              Title
             </Label>
-            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
+            <Input id="title" className="col-span-4" />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+
+          <div className="grid grid-cols-5 items-center gap-4">
             <Label className="text-right">Area</Label>
             <Select>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="col-span-4">
                 <SelectValue placeholder="Select area" />
               </SelectTrigger>
               <SelectContent>
@@ -61,10 +60,29 @@ export function CreateChore() {
               </SelectContent>
             </Select>
           </div>
+
+          <div className="grid grid-cols-5 items-center gap-4">
+            <Label className="text-right">Duration</Label>
+            <Select>
+              <SelectTrigger className="col-span-4">
+                <SelectValue placeholder="Select area" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="1">Bathroom</SelectItem>
+                  <SelectItem value="2">Bedroom</SelectItem>
+                  <SelectItem value="3">Kitchen</SelectItem>
+                  <SelectItem value="4">Laundry</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <DialogFooter>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" onClick={() => console.log('Submit')}>
+            Submit
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
