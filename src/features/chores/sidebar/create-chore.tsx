@@ -48,7 +48,13 @@ export function CreateChore() {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(val) => {
+        setOpen(val);
+        form.reset();
+      }}
+    >
       <DialogTrigger asChild>
         <Button className="flex gap-x-2">
           <IconPlus className="h-4 w-4" />
