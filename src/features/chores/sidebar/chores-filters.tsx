@@ -1,12 +1,11 @@
 import { Checkbox } from '@/components/checkbox';
 import { Label } from '@/components/label';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip';
-import { areaFilters } from '@/features/chores/constants';
 import { useStore } from '@/store/store';
 import * as Slider from '@radix-ui/react-slider';
+import { areaFilters } from '../constants';
 
 export function ChoresFilters() {
-  // TODO: Link these to the chores state once it's setup using Zustand
   return (
     <div className="flex flex-col gap-y-6">
       <AreaFilter />
@@ -16,17 +15,23 @@ export function ChoresFilters() {
 }
 
 function AreaFilter() {
+  const filters = useStore((state) => state.areaFilters);
+  const toggleFilter = useStore((state) => state.toggleAreaFilter);
+
+  console.log('Filters:', filters);
+
   return (
     <div>
       <div className="py-4 font-medium">Area</div>
-
       <div>
         {areaFilters.map((area, index) => (
           <div key={area.value} className="flex items-center">
             <Checkbox
               id={`filter-${area.value}-${index}`}
               name={`${area.value}[]`}
-              defaultValue={area.value}
+              value={area.value}
+              checked={filters.includes(area.value)}
+              onCheckedChange={() => toggleFilter(area.value)}
               className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
             />
             <Label
@@ -49,7 +54,6 @@ function DurationSlider() {
   return (
     <div>
       <div className="py-4 font-medium">Duration</div>
-
       <Slider.Root
         className="relative flex w-full touch-none select-none items-center"
         value={durationRange}
