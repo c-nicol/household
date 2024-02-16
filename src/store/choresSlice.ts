@@ -1,6 +1,6 @@
 import { StateCreator } from "zustand"
 
-type Chore = {
+export type Chore = {
     id: string
     title: string
     area: string
