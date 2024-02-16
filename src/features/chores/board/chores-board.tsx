@@ -1,7 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from '@/components/alert';
 import { Button } from '@/components/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/card';
-import type { Chore as ChoreType } from '@/store/choresSlice';
+import type { Chore as ChoreType } from '@/store/chores-slice';
 import { useStore } from '@/store/store';
 import { IconAlertCircle, IconTrash } from '@tabler/icons-react';
 
