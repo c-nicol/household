@@ -18,8 +18,6 @@ function AreaFilter() {
   const filters = useStore((state) => state.areaFilters);
   const toggleFilter = useStore((state) => state.toggleAreaFilter);
 
-  console.log('Filters:', filters);
-
   return (
     <div>
       <div className="py-4 font-medium">Area</div>

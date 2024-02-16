@@ -5,8 +5,15 @@ import type { Chore as ChoreType } from '@/store/chores-slice';
 import { useStore } from '@/store/store';
 import { IconAlertCircle, IconTrash } from '@tabler/icons-react';
 
-export function ChoresBoard() {
+export function ChoresList() {
   const chores = useStore((state) => state.chores);
+  const filters = useStore((state) => state.areaFilters);
+  const durationRange = useStore((state) => state.durationRange);
+
+  // TODO: Configure this within slice rather than in component
+  const filteredChores = chores
+    .filter((chore) => filters.includes(chore.area))
+    .filter((chore) => chore.duration >= durationRange[0] && chore.duration <= durationRange[1]);
 
   if (!chores.length)
     return (
@@ -20,7 +27,7 @@ export function ChoresBoard() {
   return (
     <div>
       <ul className="flex h-full flex-col gap-y-4">
-        {chores.map((chore) => (
+        {filteredChores.map((chore) => (
           <Chore key={chore.id} chore={chore} />
         ))}
       </ul>

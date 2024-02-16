@@ -1,4 +1,4 @@
-import { ChoresBoard } from '@/features/chores/board/chores-board';
+import { ChoresList } from '@/features/chores/chores-list';
 import { ChoresSidebar } from '@/features/chores/sidebar/chores-sidebar';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
@@ -18,7 +18,7 @@ function Index() {
                 <ChoresSidebar />
 
                 <div className="lg:col-span-3">
-                  <ChoresBoard />
+                  <ChoresList />
                 </div>
               </div>
             </section>
