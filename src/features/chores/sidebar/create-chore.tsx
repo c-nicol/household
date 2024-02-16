@@ -42,7 +42,11 @@ export function CreateChore() {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log('Form Values:', values);
 
-    addChore({ id: uuidv4(), ...values });
+    addChore({
+      id: uuidv4(),
+      createdAt: new Date(),
+      ...values,
+    });
     setOpen(false);
     form.reset();
   };
