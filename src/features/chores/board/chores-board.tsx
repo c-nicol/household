@@ -1,6 +1,6 @@
 import { Button } from '@/components/button';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/card';
-import { Chore } from '@/store/choresSlice';
+import type { Chore as ChoreType } from '@/store/choresSlice';
 import { useStore } from '@/store/store';
 
 export function ChoresBoard() {
@@ -26,7 +26,7 @@ function Chores() {
 }
 
 type ChoreProps = {
-  chore: Chore;
+  chore: ChoreType;
 };
 
 function Chore({ chore }: ChoreProps) {
