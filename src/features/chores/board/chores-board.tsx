@@ -4,24 +4,18 @@ import type { Chore as ChoreType } from '@/store/choresSlice';
 import { useStore } from '@/store/store';
 
 export function ChoresBoard() {
-  return (
-    <div className="h-full gap-y-4 rounded-xl border border-dashed p-4">
-      <Chores />
-    </div>
-  );
-}
-
-function Chores() {
   const chores = useStore((state) => state.chores);
 
   if (!chores.length) return <div>No chores</div>;
 
   return (
-    <>
-      {chores.map((chore) => (
-        <Chore key={chore.id} chore={chore} />
-      ))}
-    </>
+    <div>
+      <ul className="flex h-full flex-col gap-y-4">
+        {chores.map((chore) => (
+          <Chore key={chore.id} chore={chore} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
