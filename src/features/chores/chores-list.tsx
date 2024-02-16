@@ -43,7 +43,7 @@ function Chore({ chore }: ChoreProps) {
   const removeChore = useStore((state) => state.removeChore);
 
   return (
-    <Card>
+    <Card className="shadow-md">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className=" flex flex-col gap-y-1">

@@ -20,7 +20,7 @@ function AreaFilter() {
 
   return (
     <div>
-      <div className="py-4 font-medium">Area</div>
+      <div className="py-4 text-lg font-medium">Area</div>
       <div>
         {areaFilters.map((area, index) => (
           <div key={area.value} className="flex items-center">
@@ -30,11 +30,11 @@ function AreaFilter() {
               value={area.value}
               checked={filters.includes(area.value)}
               onCheckedChange={() => toggleFilter(area.value)}
-              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              className="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
             />
             <Label
               htmlFor={`filter-${area.value}-${index}`}
-              className="ml-3 cursor-pointer text-sm text-gray-600"
+              className="text-md ml-3 cursor-pointer text-gray-600"
             >
               {area.label}
             </Label>
@@ -51,7 +51,7 @@ function DurationSlider() {
 
   return (
     <div>
-      <div className="py-4 font-medium">Duration</div>
+      <div className="py-4 text-lg font-medium">Duration</div>
       <Slider.Root
         className="relative flex w-full touch-none select-none items-center"
         value={durationRange}
