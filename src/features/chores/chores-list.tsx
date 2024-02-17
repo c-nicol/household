@@ -1,9 +1,10 @@
 import { Alert, AlertDescription, AlertTitle } from '@/components/alert';
-import { Button } from '@/components/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/card';
 import type { Chore as ChoreType } from '@/store/chores-slice';
 import { useStore } from '@/store/store';
-import { IconAlertCircle, IconTrash } from '@tabler/icons-react';
+import { IconAlertCircle } from '@tabler/icons-react';
+import { DeleteChore } from './delete-chore';
+import { EditChore } from './edit-chore';
 
 export function ChoresList() {
   const chores = useStore((state) => state.chores);
@@ -40,58 +41,21 @@ type ChoreProps = {
 };
 
 function Chore({ chore }: ChoreProps) {
-  const removeChore = useStore((state) => state.removeChore);
-
-  const chores = useStore.getState().chores;
-
-  console.log('component', chores);
-
   return (
-    <>
-      <Card className="shadow-md">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div className=" flex flex-col gap-y-1">
-              <CardTitle>{chore.title}</CardTitle>
-              <CardDescription>{chore.area}</CardDescription>
-            </div>
-
-            <div>
-              <Button
-                className="p-3"
-                variant="destructive"
-                onClick={() => {
-                  removeChore(chore.id);
-                }}
-              >
-                <IconTrash className="h-4 w-4" />
-              </Button>
-            </div>
+    <Card className="shadow-md">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className=" flex flex-col gap-y-1">
+            <CardTitle>{chore.title}</CardTitle>
+            <CardDescription>{chore.area}</CardDescription>
           </div>
-        </CardHeader>
-      </Card>
-      <Card className="shadow-md">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div className=" flex flex-col gap-y-1">
-              <CardTitle>{chore.title}</CardTitle>
-              <CardDescription>{chore.area}</CardDescription>
-            </div>
 
-            <div>
-              <Button
-                className="p-3"
-                variant="destructive"
-                onClick={() => {
-                  removeChore(chore.id);
-                }}
-              >
-                <IconTrash className="h-4 w-4" />
-              </Button>
-            </div>
+          <div className="flex gap-x-2">
+            <EditChore choreId={chore.id} />
+            <DeleteChore choreId={chore.id} />
           </div>
-        </CardHeader>
-      </Card>
-    </>
+        </div>
+      </CardHeader>
+    </Card>
   );
 }
