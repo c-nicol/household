@@ -15,6 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 
@@ -47,6 +48,7 @@ export function CreateChore() {
     });
     setOpen(false);
     form.reset();
+    toast.success('Chore has been created.');
   };
 
   return (

@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/sonner';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { TooltipProvider } from './components/tooltip';
 import { routeTree } from './routeTree.gen';
@@ -16,6 +17,7 @@ function App() {
   return (
     <TooltipProvider>
       <RouterProvider router={router} />
+      <Toaster position="top-right" richColors />
     </TooltipProvider>
   );
 }
