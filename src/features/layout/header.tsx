@@ -34,10 +34,7 @@ export function Header() {
   return (
     <>
       <div ref={wrapperRef} />
-      <header
-        ref={headerRef}
-        className="sticky top-0 z-50 bg-white bg-opacity-[98%] transition-shadow duration-500"
-      >
+      <header ref={headerRef} className="sticky top-0 z-50 bg-white transition-shadow duration-500">
         <nav
           className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-x-6 px-4"
           aria-label="Global"

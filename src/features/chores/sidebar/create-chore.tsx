@@ -26,7 +26,7 @@ const formSchema = z.object({
 
 // TODO: Add optional field for an icon
 export function CreateChore() {
-  const addChore = useStore((state) => state.addChore);
+  const addChore = useStore.getState().addChore;
 
   const [open, setOpen] = useState(false);
 
@@ -40,8 +40,6 @@ export function CreateChore() {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log('Form Values:', values);
-
     addChore({
       id: uuidv4(),
       createdAt: new Date(),
@@ -60,7 +58,7 @@ export function CreateChore() {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="flex gap-x-2">
+        <Button className="flex w-full gap-x-2">
           <IconPlus className="h-4 w-4" />
           <span>Create Chore</span>
         </Button>

@@ -42,28 +42,56 @@ type ChoreProps = {
 function Chore({ chore }: ChoreProps) {
   const removeChore = useStore((state) => state.removeChore);
 
-  return (
-    <Card className="shadow-md">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className=" flex flex-col gap-y-1">
-            <CardTitle>{chore.title}</CardTitle>
-            <CardDescription>{chore.area}</CardDescription>
-          </div>
+  const chores = useStore.getState().chores;
 
-          <div>
-            <Button
-              className="p-3"
-              variant="destructive"
-              onClick={() => {
-                removeChore(chore.id);
-              }}
-            >
-              <IconTrash className="h-4 w-4" />
-            </Button>
+  console.log('component', chores);
+
+  return (
+    <>
+      <Card className="shadow-md">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div className=" flex flex-col gap-y-1">
+              <CardTitle>{chore.title}</CardTitle>
+              <CardDescription>{chore.area}</CardDescription>
+            </div>
+
+            <div>
+              <Button
+                className="p-3"
+                variant="destructive"
+                onClick={() => {
+                  removeChore(chore.id);
+                }}
+              >
+                <IconTrash className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
-        </div>
-      </CardHeader>
-    </Card>
+        </CardHeader>
+      </Card>
+      <Card className="shadow-md">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div className=" flex flex-col gap-y-1">
+              <CardTitle>{chore.title}</CardTitle>
+              <CardDescription>{chore.area}</CardDescription>
+            </div>
+
+            <div>
+              <Button
+                className="p-3"
+                variant="destructive"
+                onClick={() => {
+                  removeChore(chore.id);
+                }}
+              >
+                <IconTrash className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+    </>
   );
 }
