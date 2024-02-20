@@ -26,7 +26,7 @@ export function ChoresList() {
     );
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid gap-6 lg:grid-cols-2">
       {filteredChores.map((chore) => (
         <Chore key={chore.id} chore={chore} />
       ))}
@@ -40,18 +40,18 @@ type ChoreProps = {
 
 function Chore({ chore }: ChoreProps) {
   return (
-    <Card className="shadow-md">
+    <Card className="p-0 shadow-md">
       <CardHeader>
         <div className="flex flex-col gap-y-1">
           <CardTitle>{chore.title}</CardTitle>
           <CardDescription>{chore.area}</CardDescription>
         </div>
-
-        <div className="flex gap-x-2">
-          <EditChore choreId={chore.id} />
-          <DeleteChore choreId={chore.id} />
-        </div>
       </CardHeader>
+
+      <div className="flex border-t">
+        <EditChore choreId={chore.id} />
+        <DeleteChore choreId={chore.id} />
+      </div>
     </Card>
   );
 }

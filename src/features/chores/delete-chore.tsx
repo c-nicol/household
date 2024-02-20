@@ -29,8 +29,12 @@ export function DeleteChore({ choreId }: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="p-3" variant="destructive">
+        <Button
+          variant="destructive"
+          className="h-12 flex-1 gap-x-1 rounded-l-none rounded-tr-none p-0"
+        >
           <IconTrash className="h-4 w-4" />
+          <span>Delete</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

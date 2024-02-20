@@ -7,14 +7,9 @@ type Props = {
 
 export function EditChore({ choreId }: Props) {
   return (
-    <Button
-      className="p-3"
-      variant="outline"
-      onClick={() => {
-        console.log('click');
-      }}
-    >
+    <Button variant="ghost" className="rounded-t-0 h-12 flex-1 gap-x-1 p-0">
       <IconEdit className="h-4 w-4" />
+      <span>Edit</span>
     </Button>
   );
 }
