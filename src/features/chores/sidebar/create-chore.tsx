@@ -129,7 +129,7 @@ export function CreateChore() {
                   <FormItem>
                     <FormLabel htmlFor="duration">Duration</FormLabel>
                     <FormControl>
-                      <Input id="duration" type="number" {...field} />
+                      <Input id="duration" type="number" inputMode="numeric" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
