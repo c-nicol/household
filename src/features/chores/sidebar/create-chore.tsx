@@ -25,7 +25,6 @@ const formSchema = z.object({
   duration: z.custom<number>().transform((val) => Number(val)),
 });
 
-// TODO: Add optional field for an icon
 export function CreateChore() {
   const addChore = useStore.getState().addChore;
 
