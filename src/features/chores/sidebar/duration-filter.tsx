@@ -5,7 +5,7 @@ export function DurationFilter() {
   const durationRange = useStore((state) => state.durationRange);
   const setDurationRange = useStore((state) => state.setDurationRange);
 
-  const formattedDurationRange = `(${durationRange[0]} - ${durationRange[1]} mins)`;
+  const formattedDurationRange = `${durationRange[0]} - ${durationRange[1]} mins`;
 
   return (
     <div>

@@ -26,12 +26,10 @@ export function ChoresList() {
     );
 
   return (
-    <div>
-      <ul className="flex h-full flex-col gap-y-4">
-        {filteredChores.map((chore) => (
-          <Chore key={chore.id} chore={chore} />
-        ))}
-      </ul>
+    <div className="grid gap-6 lg:grid-cols-3">
+      {filteredChores.map((chore) => (
+        <Chore key={chore.id} chore={chore} />
+      ))}
     </div>
   );
 }
@@ -44,16 +42,14 @@ function Chore({ chore }: ChoreProps) {
   return (
     <Card className="shadow-md">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className=" flex flex-col gap-y-1">
-            <CardTitle>{chore.title}</CardTitle>
-            <CardDescription>{chore.area}</CardDescription>
-          </div>
+        <div className="flex flex-col gap-y-1">
+          <CardTitle>{chore.title}</CardTitle>
+          <CardDescription>{chore.area}</CardDescription>
+        </div>
 
-          <div className="flex gap-x-2">
-            <EditChore choreId={chore.id} />
-            <DeleteChore choreId={chore.id} />
-          </div>
+        <div className="flex gap-x-2">
+          <EditChore choreId={chore.id} />
+          <DeleteChore choreId={chore.id} />
         </div>
       </CardHeader>
     </Card>
