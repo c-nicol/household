@@ -7,6 +7,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/dialog';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/drawer';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Input } from '@/components/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select';
@@ -28,7 +37,8 @@ const formSchema = z.object({
 export function CreateChore() {
   const addChore = useStore.getState().addChore;
 
-  const [open, setOpen] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,90 +55,174 @@ export function CreateChore() {
       createdAt: new Date(),
       ...values,
     });
-    setOpen(false);
+    setDesktopOpen(false);
+    setMobileOpen(false);
     form.reset();
     toast.success('Chore has been created.');
   };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(val) => {
-        setOpen(val);
-        form.reset();
-      }}
-    >
-      <DialogTrigger asChild>
-        <Button className="flex w-full gap-x-2">
-          <IconPlus className="h-4 w-4" />
-          <span>Create Chore</span>
-        </Button>
-      </DialogTrigger>
+    <>
+      <Drawer
+        open={mobileOpen}
+        onOpenChange={(val) => {
+          setMobileOpen(val);
+          form.reset();
+        }}
+      >
+        <DrawerTrigger asChild className="lg:hidden">
+          <Button className="flex w-full gap-x-2">
+            <IconPlus className="h-4 w-4" />
+            <span>Create Chore</span>
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Create a Chore</DrawerTitle>
+            <DrawerDescription>Click submit when you're done.</DrawerDescription>
+          </DrawerHeader>
 
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create a Chore</DialogTitle>
-          <DialogDescription>Click submit when you're done.</DialogDescription>
-        </DialogHeader>
-
-        <Form {...form}>
-          <form className="grid gap-6 pt-4" onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel htmlFor="title">Title</FormLabel>
-                  <FormControl>
-                    <Input id="title" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="area"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel htmlFor="area">Area</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Form {...form}>
+            <form className="grid gap-6 px-6 pt-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="title">Title</FormLabel>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select area" />
-                      </SelectTrigger>
+                      <Input id="title" {...field} />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="bathroom">Bathroom</SelectItem>
-                      <SelectItem value="bedroom">Bedroom</SelectItem>
-                      <SelectItem value="kitchen">Kitchen</SelectItem>
-                      <SelectItem value="laundry">Laundry</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="duration"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel htmlFor="duration">Duration</FormLabel>
-                  <FormControl>
-                    <Input id="duration" type="number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="area"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="area">Area</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select area" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="bathroom">Bathroom</SelectItem>
+                        <SelectItem value="bedroom">Bedroom</SelectItem>
+                        <SelectItem value="kitchen">Kitchen</SelectItem>
+                        <SelectItem value="laundry">Laundry</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
+              <FormField
+                control={form.control}
+                name="duration"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="duration">Duration</FormLabel>
+                    <FormControl>
+                      <Input id="duration" type="number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <DrawerFooter className="px-0">
+                <Button type="submit">Submit</Button>
+              </DrawerFooter>
+            </form>
+          </Form>
+        </DrawerContent>
+      </Drawer>
+
+      <Dialog
+        open={desktopOpen}
+        onOpenChange={(val) => {
+          setDesktopOpen(val);
+          form.reset();
+        }}
+      >
+        <DialogTrigger asChild>
+          <Button className="hidden w-full gap-x-2 lg:flex">
+            <IconPlus className="h-4 w-4" />
+            <span>Create Chore</span>
+          </Button>
+        </DialogTrigger>
+
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Create a Chore</DialogTitle>
+            <DialogDescription>Click submit when you're done.</DialogDescription>
+          </DialogHeader>
+
+          <Form {...form}>
+            <form className="grid gap-6 pt-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="title">Title</FormLabel>
+                    <FormControl>
+                      <Input id="title" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="area"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="area">Area</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select area" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="bathroom">Bathroom</SelectItem>
+                        <SelectItem value="bedroom">Bedroom</SelectItem>
+                        <SelectItem value="kitchen">Kitchen</SelectItem>
+                        <SelectItem value="laundry">Laundry</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="duration"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="duration">Duration</FormLabel>
+                    <FormControl>
+                      <Input id="duration" type="number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
