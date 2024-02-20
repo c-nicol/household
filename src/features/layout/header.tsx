@@ -45,7 +45,7 @@ export function Header() {
             <Tooltip delayDuration={200}>
               <TooltipTrigger asChild>
                 <Button asChild variant="outline" className="rounded-3xl p-2">
-                  <a href="https://github.com/c-nicol" target="_blank">
+                  <a href="https://github.com/c-nicol/household" target="_blank">
                     <IconBrandGithub className="h-full" />
                   </a>
                 </Button>
@@ -54,9 +54,6 @@ export function Header() {
                 <p>View repository</p>
               </TooltipContent>
             </Tooltip>
-
-            <Button variant="outline">Login</Button>
-            <Button>Sign Up</Button>
           </div>
         </nav>
       </header>
